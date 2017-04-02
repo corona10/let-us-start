@@ -25,20 +25,20 @@ public class InfixToPostFix {
 
         for (String in : _infix) {
             if (IsOperator(in)) {
-                if (in.equals(")")) {
-                    while (!this._stack.empty() && !this._stack.peek().equals("(")) {
+                if (")".equals(in)) {
+                    while (!this._stack.empty() && !"(".equals(this._stack.peek())) {
                         String popOp = this._stack.pop();
                         this._postfix.add(popOp);
                     }
 
-                    if (!this._stack.empty() && this._stack.peek().equals("(")) {
+                    if (!this._stack.empty() && "(".equals(this._stack.peek())) {
                         this._stack.pop();
                     }
                 } else {
                     while (!this._stack.empty()
                             && !IsHigherPrirorty(in, _stack.peek())) {
                         String compareOp = this._stack.pop();
-                        if (!in.equals("(")) {
+                        if (!"(".equals(in)) {
                             _postfix.add(compareOp);
                         } else {
                             in = compareOp;
@@ -66,8 +66,8 @@ public class InfixToPostFix {
     }
 
     private boolean IsOperator(String s) {
-        if (s.equals("+") || s.equals("*") || s.equals("/") || s.equals("-")
-                || s.equals("(") || s.equals(")")) {
+        if ("+".equals(s) || "*".equals(s) || "/".equals(s) || "-".equals(s)
+                || "(".equals(s) || ")".equals(s)) {
             return true;
         }
 
@@ -76,15 +76,15 @@ public class InfixToPostFix {
 
     private boolean IsHigherPrirorty(String op1, String op2) {
 
-        if (op1.equals("+") || op1.equals("-")) {
-            if (op2.equals("/") || op2.equals("*")) {
+        if ("+".equals(op1) || "-".equals(op1)) {
+            if ("/".equals(op2) || "*".equals(op2)) {
                 return false;
             }
             return true;
         }
 
-        if (op1.equals("*") || op1.equals("/")) {
-            if (op2.equals("+") || op2.equals("-")) {
+        if ("*".equals(op1) || "/".equals(op1)) {
+            if ("+".equals(op2) || "-".equals(op2)) {
                 return true;
             }
             return false;
