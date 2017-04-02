@@ -24,7 +24,7 @@ public class InFixToPostFixTest extends TestCase {
     public static Test suite() {
         return new TestSuite(InFixToPostFixTest.class);
     }
-    
+
     public void testInfixToPostFix1() {
         InfixToPostFix infixToPostFix = new InfixToPostFix();
         String[] postfix = {"13", "5", "+"};
@@ -63,7 +63,6 @@ public class InFixToPostFixTest extends TestCase {
         String[] infix = {"(", "13", "+", "5", ")", "*", "2", "+", "(", "4", "+", "2", ")"};
         String[] postfix = {"13", "5", "+", "2", "*", "4", "2", "+", "+"};
         String[] result = infixToPostFix.getPostFix(infix);
-        ;
         assertEquals(postfix.length, result.length);
         for (int i = 0; i < postfix.length; i++) {
             assertEquals(postfix[i], result[i]);
@@ -75,7 +74,6 @@ public class InFixToPostFixTest extends TestCase {
         String[] infix = {"(", "1", "+", "2", "*", "3", ")", "/", "5"};
         String[] postfix = {"1", "2", "3", "*", "+", "5", "/"};
         String[] result = infixToPostFix.getPostFix(infix);
-        ;
         assertEquals(postfix.length, result.length);
         for (int i = 0; i < postfix.length; i++) {
             assertEquals(postfix[i], result[i]);
