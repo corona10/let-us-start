@@ -33,10 +33,12 @@ public class CalcAppTest
         assertTrue(true);
     }
 
+    private String getPostFixName = "getPostFix";
+
     public void testInfixToPostFix1() {
         CalcApp infixToPostFixCalc = new CalcApp();
         try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod("getPostFix", new Class[]{String[].class});
+            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
             m.setAccessible(true);
             String[] postfix = {"13", "5", "+"};
             String[] infix = {"13", "+", "5"};
@@ -53,7 +55,7 @@ public class CalcAppTest
     public void testInfixToPostFix2() {
         CalcApp infixToPostFixCalc = new CalcApp();
         try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod("getPostFix", new Class[]{String[].class});
+            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
             m.setAccessible(true);
             String[] infix = {"13", "+", "5", "*", "2"};
             String[] postfix = {"13", "5", "2", "*", "+"};
@@ -70,7 +72,7 @@ public class CalcAppTest
     public void testInfixToPostFix3() {
         CalcApp infixToPostFixCalc = new CalcApp();
         try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod("getPostFix", new Class[]{String[].class});
+            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
             m.setAccessible(true);
             String[] infix = {"13.5", "+", "5", "*", "2", "+", "(", "4", "+", "2", ")"};
             String[] postfix = {"13.5", "5", "2", "*", "4", "2", "+", "+", "+"};
@@ -87,7 +89,7 @@ public class CalcAppTest
     public void testInfixToPostFix4() {
         CalcApp infixToPostFixCalc = new CalcApp();
         try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod("getPostFix", new Class[]{String[].class});
+            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
             m.setAccessible(true);
             String[] infix = {"(", "13", "+", "5", ")", "*", "2", "+", "(", "4", "+", "2", ")"};
             String[] postfix = {"13", "5", "+", "2", "*", "4", "2", "+", "+"};
@@ -104,7 +106,7 @@ public class CalcAppTest
     public void testInfixToPostFix5() {
         CalcApp infixToPostFixCalc = new CalcApp();
         try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod("getPostFix", new Class[]{String[].class});
+            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
             m.setAccessible(true);
             String[] infix = {"(", "1", "+", "2", "*", "3", ")", "/", "5"};
             String[] postfix = {"1", "2", "3", "*", "+", "5", "/"};
