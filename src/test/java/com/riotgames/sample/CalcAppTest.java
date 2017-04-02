@@ -10,6 +10,8 @@ import java.lang.reflect.Method;
  */
 public class CalcAppTest
         extends TestCase {
+
+    private String getPostFixName = "getPostFix";
     /**
      * Create the test case
      *
@@ -32,8 +34,6 @@ public class CalcAppTest
     public void testApp() {
         assertTrue(true);
     }
-
-    private String getPostFixName = "getPostFix";
 
     public void testInfixToPostFix1() {
         CalcApp infixToPostFixCalc = new CalcApp();
