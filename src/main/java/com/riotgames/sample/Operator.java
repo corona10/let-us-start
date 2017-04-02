@@ -49,4 +49,3 @@ public enum Operator {
         throw new RuntimeException("Invalid operator");
     }
 }
-
