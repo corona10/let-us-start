@@ -12,6 +12,7 @@ public class CalcAppTest
         extends TestCase {
 
     private String getPostFixName = "getPostFix";
+    private String calculatePostfixName = "calculatePostfix";
     /**
      * Create the test case
      *
@@ -118,5 +119,85 @@ public class CalcAppTest
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void testcalculatePostfix1(){
+        CalcApp calcPostFix = new CalcApp();
+        try {
+            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
+            m.setAccessible(true);
+            String[] postfix = {"15.7","12.2","-"};
+            Double correct = 3.5;
+            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
+            assertEquals(result, correct);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void testcalculatePostfix2(){
+        CalcApp calcPostFix = new CalcApp();
+        try {
+            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
+            m.setAccessible(true);
+            String[] postfix =  {"20", "5", "+"};
+            Double correct = 25.0;
+            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
+            assertEquals(result, correct);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void testcalculatePostfix3(){
+        CalcApp calcPostFix = new CalcApp();
+        try {
+            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
+            m.setAccessible(true);
+            String[] postfix = {"300", "23", "+", "43", "21", "-", "*", "3", "7", "+", "/"};
+            Double correct = 710.6;
+            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
+            assertEquals(result, correct);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void testcalculatePostfix4(){
+        CalcApp calcPostFix = new CalcApp();
+        try {
+            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
+            m.setAccessible(true);
+            String[] postfix = {"3.2", "4", "5", "*", "2", "/","+"};
+            Double correct = 13.2;
+            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
+            assertEquals(result, correct);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void testcalculatePostfix5(){
+        CalcApp calcPostFix = new CalcApp();
+        try {
+            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
+            m.setAccessible(true);
+            String[] postfix = {"20", "5.2", "5", "*", "+"};
+            Double correct = 46.0;
+            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
+            assertEquals(result, correct);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
