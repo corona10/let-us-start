@@ -24,7 +24,20 @@ public class CalcApp {
     }
 
     private double calculatePostfix(String[] postfix) {
-        return 0.0;
+        this.stack.clear();
+
+        for (String in : postfix) {
+            if (isNumber(in)) {
+                this.stack.push(in);
+            } else if (isOperator(in)) {
+                Operator operator = Operator.findOperator(in);
+                double secondOperand = Double.parseDouble(this.stack.pop());
+                double firstOperand = Double.parseDouble(this.stack.pop());
+                this.stack.push(String.valueOf(operator.evaluate(firstOperand, secondOperand)));
+            }
+        }
+
+        return Double.parseDouble(this.stack.pop());
     }
 
     private String[] getPostFix(String[] infix) {
