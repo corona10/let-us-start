@@ -1,8 +1,6 @@
 package com.riotgames.sample;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -10,12 +8,13 @@ import java.util.regex.Pattern;
  */
 public class CalcApp {
 
-    private Stack<String> stack;
+    private Deque<String> stack;
     private ArrayList<String> postfix;
+
 
     public CalcApp() {
         this.postfix = new ArrayList<>();
-        this.stack = new Stack<>();
+        this.stack = new ArrayDeque<>();
     }
 
     public double calc(String[] tokens) {
@@ -34,16 +33,16 @@ public class CalcApp {
         for (String in : infix) {
             if (isOperator(in)) {
                 if (")".equals(in)) {
-                    while (!this.stack.empty() && !"(".equals(this.stack.peek())) {
+                    while (!this.stack.isEmpty() && !"(".equals(this.stack.peek())) {
                         String popOp = this.stack.pop();
                         this.postfix.add(popOp);
                     }
 
-                    if (!this.stack.empty() && "(".equals(this.stack.peek())) {
+                    if (!this.stack.isEmpty() && "(".equals(this.stack.peek())) {
                         this.stack.pop();
                     }
                 } else {
-                    while (!this.stack.empty()
+                    while (!this.stack.isEmpty()
                             && !isHigherPrirorty(in, stack.peek())) {
                         String compareOp = this.stack.pop();
                         if (!"(".equals(in)) {
@@ -59,7 +58,7 @@ public class CalcApp {
             }
         }
 
-        while (!this.stack.empty()) {
+        while (!this.stack.isEmpty()) {
             this.postfix.add(this.stack.pop());
         }
         String[] result = new String[this.postfix.size()];
@@ -104,7 +103,7 @@ public class CalcApp {
     public static void main(String[] args) {
         final CalcApp app = new CalcApp();
         final StringBuilder outputs = new StringBuilder();
-        Arrays.asList(args).forEach(value -> outputs.append(value + " "));
+        Arrays.asList(args).forEach(value -> outputs.append(value).append(" "));
         System.out.print("Addition of values: " + outputs + " = ");
         System.out.println(app.calc(args));
     }
