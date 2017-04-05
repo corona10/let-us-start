@@ -37,4 +37,8 @@ public class Utility {
         }
         return false;
     }
+
+    private Utility() {
+
+    }
 }
