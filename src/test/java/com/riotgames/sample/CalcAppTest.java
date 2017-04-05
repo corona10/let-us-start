@@ -3,7 +3,6 @@ package com.riotgames.sample;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import java.lang.reflect.Method;
 
 /**
  * Unit test for simple CalcApp.
@@ -73,6 +72,14 @@ public class CalcAppTest
         String[] target = {"13", "*", "5", "+", "8", "/", "2" ,"+", "124.5"};
         double result = Calc.calc(target);
         double expected = 193.5;
+        assertEquals(expected, result);
+    }
+
+    public void testCalc6() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"13", "*", "5", "+", "8", "/", "2" ,"-", "124.5"};
+        double result = Calc.calc(target);
+        double expected = -55.5;
         assertEquals(expected, result);
     }
 }
