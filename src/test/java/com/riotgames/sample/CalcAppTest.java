@@ -36,168 +36,43 @@ public class CalcAppTest
         assertTrue(true);
     }
 
-    public void testInfixToPostFix1() {
-        CalcApp infixToPostFixCalc = new CalcApp();
-        try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix = {"13", "5", "+"};
-            String[] infix = {"13", "+", "5"};
-            String[] result = (String[]) m.invoke(infixToPostFixCalc, new Object[]{infix});
-            assertEquals(postfix.length, result.length);
-            for (int i = 0; i < postfix.length; i++) {
-                assertEquals(postfix[i], result[i]);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void testCalc1() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"13", "+", "5"};
+        double result = Calc.calc(target);
+        double expected = 18.0;
+        assertEquals(expected, result);
     }
 
-    public void testInfixToPostFix2() {
-        CalcApp infixToPostFixCalc = new CalcApp();
-        try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] infix = {"13", "+", "5", "*", "2"};
-            String[] postfix = {"13", "5", "2", "*", "+"};
-            String[] result = (String[]) m.invoke(infixToPostFixCalc, new Object[]{infix});
-            assertEquals(postfix.length, result.length);
-            for (int i = 0; i < postfix.length; i++) {
-                assertEquals(postfix[i], result[i]);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void testCalc2() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"13", "+", "5", "*", "2"};
+        double result = Calc.calc(target);
+        double expected = 23.0;
+        assertEquals(expected, result);
     }
 
-    public void testInfixToPostFix3() {
-        CalcApp infixToPostFixCalc = new CalcApp();
-        try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] infix = {"13.5", "+", "5", "*", "2", "+", "(", "4", "+", "2", ")"};
-            String[] postfix = {"13.5", "5", "2", "*", "4", "2", "+", "+", "+"};
-            String[] result = (String[]) m.invoke(infixToPostFixCalc, new Object[]{infix});
-            assertEquals(postfix.length, result.length);
-            for (int i = 0; i < postfix.length; i++) {
-                assertEquals(postfix[i], result[i]);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void testCalc3() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"(",  "13", "+", "5", ")", "*", "2"};
+        double result = Calc.calc(target);
+        double expected = 36.0;
+        assertEquals(expected, result);
     }
 
-    public void testInfixToPostFix4() {
-        CalcApp infixToPostFixCalc = new CalcApp();
-        try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] infix = {"(", "13", "+", "5", ")", "*", "2", "+", "(", "4", "+", "2", ")"};
-            String[] postfix = {"13", "5", "+", "2", "*", "4", "2", "+", "+"};
-            String[] result = (String[]) m.invoke(infixToPostFixCalc, new Object[]{infix});
-            assertEquals(postfix.length, result.length);
-            for (int i = 0; i < postfix.length; i++) {
-                assertEquals(postfix[i], result[i]);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void testCalc4() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"13", "*", "5", "+", "8", "+", "2"};
+        double result = Calc.calc(target);
+        double expected = 75.0;
+        assertEquals(expected, result);
     }
 
-    public void testInfixToPostFix5() {
-        CalcApp infixToPostFixCalc = new CalcApp();
-        try {
-            Method m = infixToPostFixCalc.getClass().getDeclaredMethod(getPostFixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] infix = {"(", "1", "+", "2", "*", "3", ")", "/", "5"};
-            String[] postfix = {"1", "2", "3", "*", "+", "5", "/"};
-            String[] result = (String[]) m.invoke(infixToPostFixCalc, new Object[]{infix});
-            assertEquals(postfix.length, result.length);
-            for (int i = 0; i < postfix.length; i++) {
-                assertEquals(postfix[i], result[i]);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void testcalculatePostfix1(){
-        CalcApp calcPostFix = new CalcApp();
-        try {
-            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix = {"15.7","12.2","-"};
-            Double correct = 3.5;
-            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
-            assertEquals(result, correct);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void testcalculatePostfix2(){
-        CalcApp calcPostFix = new CalcApp();
-        try {
-            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix =  {"20", "5", "+"};
-            Double correct = 25.0;
-            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
-            assertEquals(result, correct);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void testcalculatePostfix3(){
-        CalcApp calcPostFix = new CalcApp();
-        try {
-            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix = {"300", "23", "+", "43", "21", "-", "*", "3", "7", "+", "/"};
-            Double correct = 710.6;
-            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
-            assertEquals(result, correct);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void testcalculatePostfix4(){
-        CalcApp calcPostFix = new CalcApp();
-        try {
-            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix = {"3.2", "4", "5", "*", "2", "/","+"};
-            Double correct = 13.2;
-            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
-            assertEquals(result, correct);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void testcalculatePostfix5(){
-        CalcApp calcPostFix = new CalcApp();
-        try {
-            Method m = calcPostFix.getClass().getDeclaredMethod(calculatePostfixName, new Class[]{String[].class});
-            m.setAccessible(true);
-            String[] postfix = {"20", "5.2", "5", "*", "+"};
-            Double correct = 46.0;
-            Double result = (Double) m.invoke(calcPostFix, new Object[]{postfix});
-            assertEquals(result, correct);
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public void testCalc5() {
+        CalcApp Calc = new CalcApp();
+        String[] target = {"13", "*", "5", "+", "8", "/", "2" ,"+", "124.5"};
+        double result = Calc.calc(target);
+        double expected = 193.5;
+        assertEquals(expected, result);
     }
 }
