@@ -32,54 +32,26 @@ public class OperatorTest extends TestCase {
     }
 
     public void testOperatorEvaluate1() {
-        boolean failed = false;
-        try {
-            Operator op = Operator.findOperator("+");
-            double result = op.evaluate(1, 1);
-            assertEquals(2.0, result);
-        } catch(RuntimeException ex) {
-            failed = true;
-        } finally {
-            assertEquals(false, failed);
-        }
+        Operator op = Operator.findOperator("+");
+        double result = op.evaluate(1, 1);
+        assertEquals(2.0, result);
     }
 
     public void testOperatorEvaluate2() {
-        boolean failed = false;
-        try {
-            Operator op = Operator.findOperator("*");
-            double result = op.evaluate(3, 4);
-            assertEquals(12.0, result);
-        } catch(RuntimeException ex) {
-            failed = true;
-        } finally {
-            assertEquals(false, failed);
-        }
+        Operator op = Operator.findOperator("*");
+        double result = op.evaluate(3, 4);
+        assertEquals(12.0, result);
     }
 
     public void testOperatorEvaluate3() {
-        boolean failed = false;
-        try {
-            Operator op = Operator.findOperator("/");
-            double result = op.evaluate(8, 4);
-            assertEquals(2.0, result);
-        } catch(RuntimeException ex) {
-            failed = true;
-        } finally {
-            assertEquals(false, failed);
-        }
+        Operator op = Operator.findOperator("/");
+        double result = op.evaluate(8, 4);
+        assertEquals(2.0, result);
     }
 
     public void testOperatorEvaluate4() {
-        boolean failed = false;
-        try {
-            Operator op = Operator.findOperator("-");
-            double result = op.evaluate(8, 4);
-            assertEquals(4.0, result);
-        } catch(RuntimeException ex) {
-            failed = true;
-        } finally {
-            assertEquals(false, failed);
-        }
+        Operator op = Operator.findOperator("-");
+        double result = op.evaluate(8, 4);
+        assertEquals(4.0, result);
     }
 }
