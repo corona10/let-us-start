@@ -70,7 +70,7 @@ public class OperatorTest extends TestCase {
         }
     }
 
-    public void testOperatorEvaluate5() {
+    public void testOperatorEvaluate4() {
         boolean failed = false;
         try {
             Operator op = Operator.findOperator("-");

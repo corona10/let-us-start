@@ -9,9 +9,6 @@ import junit.framework.TestSuite;
  */
 public class CalcAppTest
         extends TestCase {
-
-    private String getPostFixName = "getPostFix";
-    private String calculatePostfixName = "calculatePostfix";
     /**
      * Create the test case
      *
@@ -36,49 +33,49 @@ public class CalcAppTest
     }
 
     public void testCalc1() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"13", "+", "5"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = 18.0;
         assertEquals(expected, result);
     }
 
     public void testCalc2() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"13", "+", "5", "*", "2"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = 23.0;
         assertEquals(expected, result);
     }
 
     public void testCalc3() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"(",  "13", "+", "5", ")", "*", "2"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = 36.0;
         assertEquals(expected, result);
     }
 
     public void testCalc4() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"13", "*", "5", "+", "8", "+", "2"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = 75.0;
         assertEquals(expected, result);
     }
 
     public void testCalc5() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"13", "*", "5", "+", "8", "/", "2" ,"+", "124.5"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = 193.5;
         assertEquals(expected, result);
     }
 
     public void testCalc6() {
-        CalcApp Calc = new CalcApp();
+        CalcApp cal = new CalcApp();
         String[] target = {"13", "*", "5", "+", "8", "/", "2" ,"-", "124.5"};
-        double result = Calc.calc(target);
+        double result = cal.calc(target);
         double expected = -55.5;
         assertEquals(expected, result);
     }
