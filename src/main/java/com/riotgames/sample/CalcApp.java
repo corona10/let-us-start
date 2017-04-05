@@ -1,7 +1,9 @@
 package com.riotgames.sample;
 
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Deque;
 
 /**
  * Calculator application
@@ -26,9 +28,9 @@ public class CalcApp {
         this.stack.clear();
 
         for (String in : postfix) {
-            if (isNumber(in)) {
+            if (Utility.isNumber(in)) {
                 this.stack.push(in);
-            } else if (isOperator(in)) {
+            } else if (Utility.isOperator(in)) {
                 Operator operator = Operator.findOperator(in);
                 double secondOperand = Double.parseDouble(this.stack.pop());
                 double firstOperand = Double.parseDouble(this.stack.pop());
@@ -44,7 +46,7 @@ public class CalcApp {
         this.stack.clear();
 
         for (String in : infix) {
-            if (isOperator(in)) {
+            if (Utility.isOperator(in)) {
                 if (")".equals(in)) {
                     while (!this.stack.isEmpty() && !"(".equals(this.stack.peek())) {
                         String popOp = this.stack.pop();
@@ -56,7 +58,7 @@ public class CalcApp {
                     }
                 } else {
                     while (!this.stack.isEmpty()
-                            && !isHigherPrirorty(in, stack.peek())) {
+                            && !Utility.isHigherPrirorty(in, stack.peek())) {
                         String compareOp = this.stack.pop();
                         if (!"(".equals(in)) {
                             postfix.add(compareOp);
@@ -66,7 +68,7 @@ public class CalcApp {
                     }
                     this.stack.push(in);
                 }
-            } else if (isNumber(in)) {
+            } else if (Utility.isNumber(in)) {
                 this.postfix.add(in);
             }
         }
@@ -77,40 +79,6 @@ public class CalcApp {
         String[] result = new String[this.postfix.size()];
         this.postfix.toArray(result);
         return result;
-    }
-
-    private boolean isNumber(String s) {
-        String numRegex = "\\d+(\\.\\d*)?|\\.\\d+";
-        Pattern p = Pattern.compile(numRegex);
-        return p.matcher(s).matches();
-    }
-
-    private boolean isOperator(String s) {
-        if ("+".equals(s) || "*".equals(s) || "/".equals(s) || "-".equals(s)
-                || "(".equals(s) || ")".equals(s)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean isHigherPrirorty(String op1, String op2) {
-
-        if ("+".equals(op1) || "-".equals(op1)) {
-            if ("/".equals(op2) || "*".equals(op2)) {
-                return false;
-            }
-            return true;
-        }
-
-        if ("*".equals(op1) || "/".equals(op1)) {
-            if ("+".equals(op2) || "-".equals(op2)) {
-                return true;
-            }
-            return false;
-        }
-
-        return false;
     }
 
     public static void main(String[] args) {
